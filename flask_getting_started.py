@@ -21,8 +21,7 @@ def hello_name(name):
 
 @app.route("/distance", methods=["POST"])
 def distance():
-    points = {"a": [1, 2], "b": [2, 3]}
-    r = request.get_json(points)
+    r = request.get_json()
     dist = math.sqrt((r["a"[0]] - r["a"[1]]) ** 2 +
                      (r["b"[0]] - r["b"[1]]) ** 2)
     distance = {
@@ -30,7 +29,7 @@ def distance():
         "a": [r["a"[0]], r["b"[0]]],
         "b": [r["a"[1]], r["b"[1]]]
     }
-    return distance
+    return jsonify(distance)
 
 
 if __name__ == "__main__":
